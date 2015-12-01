@@ -29,7 +29,6 @@ app.get('/', function(request, response) {
 
 // listen to port as defined or default 3000
 var port = process.env.PORT || 3000;
-port = 5000;
 
 app.listen(port);
 
