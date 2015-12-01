@@ -4,7 +4,7 @@ var criminalsController = require('../controllers/criminals');
 var bodyParser = require('body-parser'); //parses information from POST
 var methodOverride = require('method-override'); //used to manipulate POST
 
-apiRouter.param('criminal_id', criminals.criminalById);
+apiRouter.param('criminal_id', criminalsController.criminalById);
 
 // configure router middleware
 apiRouter.route('/criminals')

@@ -1,5 +1,16 @@
 var Criminal = require('../models/Criminal');
 
+// MIDDLEWARE TO UPDATE request TO STORE CRIMINAL 
+function criminalById(request, response, next, id) {
+  Criminal.findById(id, function(error, criminal) {
+    if (error) console.error('Could not find request criminal b/c:', error);
+
+    request.criminal = criminal; // store criminal in request
+    next(); // callback to move onto next handler
+  });
+}
+
+
 // GET
 function getAll(request, response) {
   Criminal.find(function(error, criminals) {
@@ -8,6 +19,8 @@ function getAll(request, response) {
     response.json({criminals: criminals});
   }).select('-__v');
 }
+
+
 
 // POST
 function createCriminal(request, response) {
@@ -63,6 +76,7 @@ function removeCriminal(request, response) {
 }
 
 module.exports = {
+  criminalById: criminalById,
   getAll: getAll,
   createCriminal: createCriminal,
   getCriminal: getCriminal,
